@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>2022全国两会</title>
+  <title>2022全国两会/NPC&CPPCC</title>
   <!-- CSS 文件 -->
   <link href="./static/css/swiper-bundle.css" type="text/css"  rel="stylesheet">
   <link href="./static/css/base.css" type="text/css"  rel="stylesheet">
@@ -17,7 +17,7 @@
       <p>请横屏浏览</p>
     </div>
   </div>
-  <div class="page-npc">
+  <div class="page-npc" id="page-npc">
     <!---主轮换-->
     <div class="swiper-container swiper-container--main">
       <div class="swiper-wrapper">
@@ -42,7 +42,8 @@
             </div>
           </div>
         </div>
-
+        
+        <!--3月4号-->
         <div class="swiper-slide">
           <div class="slide-wrapper">
             <div class="slide-container">
@@ -57,6 +58,7 @@
           </div>
         </div>
 
+        <!--3月5号-->
         <div class="swiper-slide">
           <div class="slide-wrapper">
             <div class="slide-container">
@@ -76,47 +78,9 @@
           </div>
         </div>
 
-        <div class="swiper-slide">
-          <div class="slide-wrapper">
-            <div class="slide-container">
-              <div class="title">十三届全国人大四次会议在京开幕-06</div>
-              <div class="image">
-                <img src="./static/images/img-0304.jpg" />
-              </div>
-              <div class="content">
-                3月4日，中国人民政治协商会议第十三届全国委员会第四次会议在北京人民大会堂开幕。这是习近平、李克强、栗战书、王沪宁、赵乐际、韩正、王岐山在主席台就座，汪洋代表政协第十三届全国委员会常务委员会向大会报告工作。
-              </div>
-            </div>
-          </div>
-        </div>
+        <!--3月6号-->
 
-        <div class="swiper-slide">
-          <div class="slide-wrapper">
-            <div class="slide-container">
-              <div class="title">十三届全国人大四次会议在京开幕-07</div>
-              <div class="image">
-                <img src="./static/images/img-0304.jpg" />
-              </div>
-              <div class="content">
-                3月4日，中国人民政治协商会议第十三届全国委员会第四次会议在北京人民大会堂开幕。这是习近平、李克强、栗战书、王沪宁、赵乐际、韩正、王岐山在主席台就座，汪洋代表政协第十三届全国委员会常务委员会向大会报告工作。
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide">
-          <div class="slide-wrapper">
-            <div class="slide-container">
-              <div class="title">十三届全国人大四次会议在京开幕-08</div>
-              <div class="image">
-                <img src="./static/images/img-0304.jpg" />
-              </div>
-              <div class="content">
-                3月4日，中国人民政治协商会议第十三届全国委员会第四次会议在北京人民大会堂开幕。这是习近平、李克强、栗战书、王沪宁、赵乐际、韩正、王岐山在主席台就座，汪洋代表政协第十三届全国委员会常务委员会向大会报告工作。
-              </div>
-            </div>
-          </div>
-        </div>
+        <!--3月7号-->
 
       </div>
     </div>
@@ -151,13 +115,21 @@
       </a>
     </div>
 
+    <div class="slide-moveup">
+      <div class="moveup-tip">向上滑动观看</div>
+      <div class="moveup-arrow">
+        <img src="./static/images/icon-arrow-up.png" />
+      </div>
+    </div>
+
   </div>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script type="text/javascript" src="./static/js/jquery.min.js"></script>
   <script type="text/javascript" src="./static/js/swiper-bundle.js"></script>
+  <script type="text/javascript" src="./static/js/hammer.min.js"></script>
   <script type="text/javascript">
     // 日历，天
-    var calendar = ['04', '05', '06', '07', '08'];
+    var calendar = ['04', '05'];
 
     // swiper实例对象
     var npcSwiper = null;
@@ -244,6 +216,7 @@
       var $swiperCalendar = $('.swiper-calendar');
       var $calendarDate =  $('.swiper-calendar .calendar-date');
       var $slideDateWrapper = $('.slide-date__wrapper');
+      var $slideMoveup = $('.slide-moveup');
 
       // 初始化轮换效果
       npcSwiper = new Swiper('.swiper-container--main', {
@@ -257,6 +230,38 @@
           init: function(swiper) {
             console.log('npcSwiper init.');
             initDateSwiper();
+
+            // 移动端去除滑动事件
+            if (/Android|iPhone/i.test(navigator.userAgent) && window.orientation === 0) {
+              // 移除所有事件
+              swiper.detachEvents();
+
+              var ham = new Hammer(document.getElementById('page-npc'));
+              ham.get('swipe').set({
+                direction: Hammer.DIRECTION_HORIZONTAL
+              });
+              var timer = null;
+              ham
+                .on('tap', function() {
+                  if (swiper.activeIndex === 0) {
+                    npcSwiper.slideTo(1);
+                  }
+                })
+                .on('swiperight', function(e) {
+                  timer && clearTimeout(timer);
+                  timer = setTimeout(function() {
+                    npcSwiper.slideTo(swiper.activeIndex + 1);
+                  }, 100);
+                })
+                .on('swipeleft', function(e) {
+                  if (swiper.activeIndex !== 0) {
+                    timer && clearTimeout(timer);
+                    timer = setTimeout(function() {
+                      npcSwiper.slideTo(swiper.activeIndex - 1)
+                    }, 100);
+                  }
+                })
+            }
           },
           slideChangeTransitionStart: function(swiper) {
             if (swiper.activeIndex === 0) {
@@ -271,6 +276,13 @@
               $calendarDate
                 .eq(swiper.activeIndex - 1).addClass('active')
                 .siblings().removeClass('active');
+            }
+            if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+              if (swiper.activeIndex === 0) {
+                $slideMoveup.show();
+              } else {
+                $slideMoveup.hide();
+              }
             }
           },
           slideChangeTransitionEnd: function(swiper) {

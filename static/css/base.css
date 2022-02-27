@@ -13,6 +13,21 @@ body {
     transform: rotate(-90deg);
   }
 }
+@-webkit-keyframes arrowUp {
+  100% {
+    -webkit-transform: translate3d(0, -2.5rem, 0);
+    transform: translate3d(0, -2.5rem, 0);
+    opacity: 0.5;
+  }
+}
+
+@keyframes arrowUp {
+  100% {
+    -webkit-transform: translate3d(0, -2.5rem, 0);
+    transform: translate3d(0, -2.5rem, 0);
+    opacity: 0.5;
+  }
+}
 .page-npc {
   position: relative;
   background-image: url('../images/bg.jpg');
@@ -249,20 +264,161 @@ body {
   color: #fff;
   text-align: center;
 }
-
+.page-npc .slide-moveup {
+  position: absolute;
+  right: 2rem;
+  bottom: 0rem;
+  z-index: 100;
+  width: 2rem;
+  display: none;
+} 
+.page-npc .slide-moveup .moveup-tip {
+  width: 0.875rem;
+  text-align: center;
+  color: #fce6c3;
+  font-size: .875rem;
+  margin: 0 auto 2rem;
+}
+.page-npc .slide-moveup .moveup-arrow {
+  -webkit-animation: arrowUp 1s linear infinite;
+  animation: arrowUp 1s linear infinite;
+}
+.page-npc .slide-moveup .moveup-arrow img {
+  width: 2rem;
+}
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  
+  .page-npc .slide-moveup {
+    display: none;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  
+  .page-npc .slide-moveup {
+    display: none;
+  }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  
+  .page-npc {
+    background-image: url('../images/bg-m.jpg');
+    background-position: top center;
+    background-size: cover;
+  }
+  .page-npc .swiper-container--main .swiper-wrapper .swiper-slide:first-child {
+    background-image: url('../images/bg-m-star.jpg');
+    background-position: top center;
+    background-size: cover;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first {
+    padding-top: 6rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper {
+    width: 100%;
+    padding-left: 0rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container {
+    width: 21rem;
+    margin-left: 9rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first .slide-container {
+    width: 100%;
+    margin-left: 0;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first .image-section {
+    justify-content: center;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first .image-section .image-npc {
+    flex: 0 0 auto;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first .image-section .image-npc img {
+    width: 12.875rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first .image-section .image-xdd img {
+    width: 14.125rem;
+  }
+  .page-npc .link-container {
+    position: absolute;
+    bottom: 0;
+    left: 9rem;
+    z-index: 100;
+  }
+  .page-npc .link-container .link-item {
+    font-size: .75rem;
+    padding: 0 0.35rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.575rem;
+    line-height: 2.25rem;
+  }
+  .page-npc .link-container .link-item:first-child {
+    margin-left: .835rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container .title {
+    margin-top: 3rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #E62A29;
+    line-height: 1.5rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container .image {
+    width: 100%;
+    margin: .25rem 0;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container .content {
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container .headline {
+    margin-block-start: .25rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container .headline a {
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+  .page-npc .slide-date__wrapper {
+    width: 10.9375rem;
+  }
+  .page-npc .slide-date__wrapper .line {
+    margin-top: 0;
+    flex: 0 0 2rem;
+  }
+  .page-npc .slide-date__wrapper .arrow img {
+    width: 1.5rem;
+  }
+  .page-npc .slide-date__wrapper .date {
+    font-size: 2rem;
+  }
+  .page-npc .slide-date__wrapper .date .swiper-container--day {
+    flex: 0 0 5rem;
+    height: 4rem;
+  }
+  .page-npc .slide-date__wrapper .date .swiper-container--day .swiper-slide {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+  .page-npc .slide-date__wrapper .line2 {
+    margin-bottom: 0;
+  }
+  .page-npc .calendar-icon {
+    right: 3rem;
+    top: 3rem;
+  }
+  .page-npc .calendar-icon img {
+    width: 2.375rem;
+  }
+  .page-npc .swiper-calendar {
+    width: 6.425rem;
+    max-height: 100%;
+  }
+  .page-npc .swiper-calendar .calendar-date {
+    line-height: 2.75rem;
+    font-size: .75rem;
+  }
+  .page-npc .swiper-calendar .calendar-arrow img {
+    width: 1.5rem;
+  }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -270,7 +426,7 @@ body {
   .page-npc {
     background-image: url('../images/bg-m.jpg');
     background-position: top center;
-    background-size: contain;
+    background-size: cover;
   }
   .page-npc .swiper-container--main .swiper-wrapper .swiper-slide:first-child {
     background-image: url('../images/bg-m-star.jpg');
@@ -389,25 +545,31 @@ body {
   .page-npc {
     background-image: url('../images/bg-m.jpg');
     background-position: top center;
-    background-size: contain;
+    background-size: cover;
   }
   .page-npc .swiper-container--main .swiper-wrapper .swiper-slide:first-child {
     background-image: url('../images/bg-m-star.jpg');
     background-position: top center;
     background-size: contain;
   }
-  .page-npc .swiper-container--main .slide-wrapper--first {
-    padding-top: 3.75rem;
-  }
   .page-npc .swiper-container--main .slide-wrapper {
-    width: 100%;
+    width: 41.625rem;
     padding-left: 3rem;
+    margin: 0 auto;
   }
   .page-npc .swiper-container--main .slide-wrapper .slide-container {
-    width: 18.75rem;
+    width: 16.75rem;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first {
+    padding-top: 10%;
+    padding-left: 0;
+  }
+  .page-npc .swiper-container--main .slide-wrapper--first .slide-container {
+    margin-left: 0;
   }
   .page-npc .swiper-container--main .slide-wrapper--first .slide-container {
     width: 100%;
+    position: relative;
   }
   .page-npc .swiper-container--main .slide-wrapper--first .image-section {
     justify-content: center;
@@ -423,7 +585,7 @@ body {
   }
   .page-npc .link-container {
     position: absolute;
-    bottom: .5rem;
+    bottom: auto;
     left: 1rem;
     z-index: 100;
   }
@@ -431,15 +593,18 @@ body {
     font-size: .75rem;
     padding: 0 0.35rem;
     margin-right: 0.5rem;
-    margin-bottom: 0.575rem;
-    line-height: 2.25rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.5rem;
+    max-width: 50%;
+    height: 1.5rem;
+    overflow: hidden;
   }
   .page-npc .link-container .link-item:first-child {
     margin-left: .835rem;
   }
   .page-npc .swiper-container--main .slide-wrapper .slide-container .title {
-    margin-top: 3rem;
-    font-size: 1.25rem;
+    margin-top: 15%;
+    font-size: 1.05rem;
     font-weight: bold;
     color: #E62A29;
     line-height: 1.5rem;
@@ -454,45 +619,51 @@ body {
   }
   .page-npc .swiper-container--main .slide-wrapper .slide-container .headline {
     margin-block-start: .25rem;
+    padding-inline-start: 0;
+  }
+  .page-npc .swiper-container--main .slide-wrapper .slide-container .headline li {
+    overflow: hidden;
+    height: 1.25rem;
   }
   .page-npc .swiper-container--main .slide-wrapper .slide-container .headline a {
     font-size: .75rem;
     line-height: 1rem;
   }
   .page-npc .slide-date__wrapper {
-    width: 10.9375rem;
-    left: 100vw;
+    width: 20%;
+    left: auto;
+    right: 25%;
   }
   .page-npc .slide-date__wrapper .line {
     margin-top: 0;
-    flex: 0 0 2rem;
+    flex: 0 0 5%;
   }
   .page-npc .slide-date__wrapper .arrow img {
     width: 1.5rem;
   }
   .page-npc .slide-date__wrapper .date {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   .page-npc .slide-date__wrapper .date .swiper-container--day {
-    flex: 0 0 5rem;
-    height: 4rem;
+    flex: 0 0 4rem;
+    height: 3rem;
   }
   .page-npc .slide-date__wrapper .date .swiper-container--day .swiper-slide {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 3rem;
+    line-height: 3rem;
   }
   .page-npc .slide-date__wrapper .line2 {
     margin-bottom: 0;
   }
   .page-npc .calendar-icon {
-    right: 2rem;
-    top: 2rem;
+    right: 8%;
+    top: 8%;
   }
   .page-npc .calendar-icon img {
     width: 2.375rem;
   }
   .page-npc .swiper-calendar {
-    width: 6.425rem;
+    width: 15%;
     max-height: 100%;
   }
   .page-npc .swiper-calendar .calendar-date {
